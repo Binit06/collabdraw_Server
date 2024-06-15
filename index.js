@@ -21,8 +21,6 @@ io.on('connection', function (socket) {
         connectedClients.set(socket.id, position);
         const positions = Array.from(connectedClients.values());
         socket.broadcast.emit('mousePositions', positions);
-        console.log(socket.id);
-        console.log(positions);
     });
 
     socket.on('canvasImage', (data) => {
