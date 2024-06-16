@@ -26,12 +26,6 @@ wss.on('connection', function (socket, req) {
         return;
     }
 
-    if (connectedClients[username]) {
-        console.log('User Already Exist Please try a different username');
-        socket.close();
-        return;
-    }
-
     connectedClients[username] = socket;
     broadcastOnlineUsers();
 
