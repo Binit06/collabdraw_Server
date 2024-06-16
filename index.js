@@ -33,14 +33,15 @@ wss.on('connection', function (socket, req) {
     }
 
     connectedClients[username] = socket;
+    broadcastOnlineUsers();
 
     console.log(`New Web Socket Connected for Username ${username}`)
 
-    broadcastOnlineUsers();
 
     socket.on('message', (data) => {
         try {
             const parsedData = JSON.parse(data);
+            broadcastOnlineUsers();
 
             if(parsedData.type === 'canvasImage') {
                 Object.keys(connectedClients).forEach((username) => {
