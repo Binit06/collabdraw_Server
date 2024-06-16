@@ -49,7 +49,6 @@ wss.on('connection', function (socket, req) {
                     if(connection !== socket && connection.readyState === WebSocket.OPEN) {
                         connection.send(message)
                     }
-                    console.log(username)
                 })
             } else if (parsedData.type === 'mousePoisition') {
                 console.log(`Received Mouse Position for ${connectedClients.get(socket).id}: `, parsedData.packet);
@@ -75,11 +74,9 @@ function broadcastOnlineUsers() {
         type: 'onlineUsers',
         users: onlineUsers
     });
-    console.log(onlineUsers)
 
     onlineUsers.map((value) => {
         const connection = connectedClients[value];
-        console.log(connection)
         connection.send(message);
     });
 }
